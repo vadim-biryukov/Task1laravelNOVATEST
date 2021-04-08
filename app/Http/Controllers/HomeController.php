@@ -35,9 +35,13 @@ class HomeController extends Controller
         return view('home',compact('news'));
 
     }
+    /* есть проблемы с названиями, например почему-то контроллер 
+    который отвечает за новости назван Home,  
+    а шаблон Info, сама переменная новости в деталке названа read логичнее было бы назвать news, и это не единственные проблемы с названиями
+    функцию можно было бы назвать newsDetail например*/
     public function info($id){
         $read=News::find($id);
-        $news_id=$id;
+        $news_id=$id; //переменная нигде не используется
         $count_like=Likes::where('news_id',$id)->count();
         $news_types_id=News::find($id)->news_types_id;
         $type_title = News_type::find($news_types_id)->title;
